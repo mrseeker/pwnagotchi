@@ -24,11 +24,15 @@ class Voice:
         return random.choice([
             self._('Hi, I\'m Pwnagotchi! Starting ...'),
             self._('New day, new hunt, new pwns!'),
+            self._('Let\'s go!'),
+            self._('Booting ...'),
             self._('Hack the Planet!')])
 
     def on_ai_ready(self):
         return random.choice([
             self._('AI ready.'),
+            self._('AI loaded and ready!'),
+            self._('Brain is working!'),
             self._('The neural network is ready.')])
 
     def on_keys_generation(self):
@@ -52,18 +56,33 @@ class Voice:
     def on_bored(self):
         return random.choice([
             self._('I\'m bored ...'),
+            self._('Nothing to do ...'),
+            self._('So, we moving?'),
+            self._('Where is everyone?'),
             self._('Let\'s go for a walk!')])
 
     def on_motivated(self, reward):
-        return self._('This is the best day of my life!')
+        return random.choice([
+            self._('This is the best day of my life!'),
+            self._('Woehoooee!'),
+            self._('Hurray, new highscore!'),
+            self._('Living the dream!')])
 
     def on_demotivated(self, reward):
-        return self._('Shitty day :/')
+        return random.choice([
+            self._('I am feeling the pain ...'),
+            self._('Worst day of my life.'),
+            self._('So long and thanks for all the fish'),
+            self._('I scored an F for Failure'),
+            self._('Shitty day :/')])
 
     def on_sad(self):
         return random.choice([
             self._('I\'m extremely bored ...'),
             self._('I\'m very sad ...'),
+            self._('Nobody wants to play with me ...'),
+            self._('I am feeling lonely.'),
+            self._('Cheer me up, please!'),
             self._('I\'m sad'),
             '...'])
 
@@ -72,6 +91,11 @@ class Voice:
         return random.choice([
             '...',
             self._('Leave me alone ...'),
+            self._('Why? Whyy? Whyyy?'),
+            self._('Meh!'),
+            self._('You don\'t care, do you?'),
+            self._('You are not funny!'),
+            self._('You are an evil bastard!'),
             self._('I\'m mad at you!')])
 
     def on_excited(self):
@@ -80,6 +104,8 @@ class Voice:
             self._('I pwn therefore I am.'),
             self._('So many networks!!!'),
             self._('I\'m having so much fun!'),
+            self._('My heart is filled with joy!'),
+            self._('I am in a candy store!'),
             self._('My crime is that of curiosity ...')])
 
     def on_new_peer(self, peer):
@@ -90,28 +116,41 @@ class Voice:
             return random.choice([
                 self._('Yo {name}! Sup?').format(name=peer.name()),
                 self._('Hey {name} how are you doing?').format(name=peer.name()),
+                self._('My friend {name} just showed up!').format(name=peer.name()),
+                self._('Hurray, {name} is nearby!').format(name=peer.name()),
+                self._('I found {name}!').format(name=peer.name()),
                 self._('Unit {name} is nearby!').format(name=peer.name())])
 
     def on_lost_peer(self, peer):
         return random.choice([
             self._('Uhm ... goodbye {name}').format(name=peer.name()),
+            self._('{name} just left the building!').format(name=peer.name()),
+            self._('Uhm ... where did {name} just go?').format(name=peer.name()),
             self._('{name} is gone ...').format(name=peer.name())])
 
     def on_miss(self, who):
         return random.choice([
             self._('Whoops ... {name} is gone.').format(name=who),
             self._('{name} missed!').format(name=who),
+            self._('{name} disappeared!').format(name=who),
+            self._('It seems that {name} does not like me.').format(name=who),
             self._('Missed!')])
 
     def on_grateful(self):
         return random.choice([
             self._('Good friends are a blessing!'),
+            self._('So happy to have friends!'),
+            self._('My friends a great!'),
             self._('I love my friends!')])
 
     def on_lonely(self):
         return random.choice([
             self._('Nobody wants to play with me ...'),
             self._('I feel so alone ...'),
+            self._('Lonely ... I am so lonely ...'),
+            self._('Nobody to play with ...'),
+            self._('Hello? Anybody out there?'),
+            self._('Tumbleweed is passing by ...'),
             self._('Where\'s everybody?!')])
 
     def on_napping(self, secs):
@@ -126,7 +165,7 @@ class Voice:
             self._('Zzz')])
 
     def on_awakening(self):
-        return random.choice(['...', '!'])
+        return random.choice(['...', '!','*yawns*'])
 
     def on_waiting(self, secs):
         return random.choice([
@@ -140,12 +179,18 @@ class Voice:
         return random.choice([
             self._('Hey {what} let\'s be friends!').format(what=what),
             self._('Associating to {what}').format(what=what),
+            self._('Hello {what}, let\'s be friends!').format(what=what),
+            self._('Hey there {what}.').format(what=what),
+            self._('So {what}, what\'s up?').format(what=what),
             self._('Yo {what}!').format(what=what)])
 
     def on_deauth(self, sta):
         return random.choice([
             self._('Just decided that {mac} needs no WiFi!').format(mac=sta['mac']),
             self._('Deauthenticating {mac}').format(mac=sta['mac']),
+            self._('Shutting up {mac}').format(mac=sta['mac']),
+            self._('Bye bye {mac}!').format(mac=sta['mac']),
+            self._('{mac} just got his access revoked.').format(mac=sta['mac']),
             self._('Kickbanning {mac}!').format(mac=sta['mac'])])
 
     def on_handshakes(self, new_shakes):
